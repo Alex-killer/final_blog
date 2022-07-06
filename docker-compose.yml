@@ -1,0 +1,77 @@
+version: '3'
+
+networks:
+  backend:
+    driver: "bridge"
+
+volumes:
+  redis:
+    driver: "local"
+
+services:
+
+  app:
+    build:
+      context: ./docker/app
+      args:
+        DOCKER_ENV: ${DOCKER_ENV}
+        UID: ${UID}
+    user: "${UID}:${UID}"
+    volumes:
+      - ./:/app
+    networks:
+      - backend
+    ports:
+      - "${DOCKER_APP_HOST_WS_PORT}:8000"
+    links:
+      - mysql
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      args:
+        PHP_UPSTREAM_CONTAINER: ${DOCKER_NGINX_PHP_UPSTREAM_CONTAINER}
+        PHP_UPSTREAM_PORT: ${DOCKER_NGINX_PHP_UPSTREAM_PORT}
+        UID: ${UID}
+    volumes_from:
+      - app
+    volumes:
+      - ${DOCKER_NGINX_HOST_SITES_PATH}:/etc/nginx/sites-available #для добавления файлов в реальном времени
+    ports:
+      - "${DOCKER_NGINX_HOST_HTTP_PORT}:80"
+      - "${DOCKER_NGINX_HOST_HTTPS_PORT}:443"
+    networks:
+      - backend
+
+  mysql:
+    image: mysql:5.6
+    restart: always
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - ${DOCKER_DATA_SAVE_PATH}/mysql:/var/lib/mysql"
+    networks:
+      - backend
+
+  node:
+    build:
+      context: ./docker/node
+    volumes:
+      - ./:/app
+    user: "node"
+    working_dir: /app
+    environment:
+      - NODE_ENV=production
+    networks:
+      - backend
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    command: "npm start"
+
+
