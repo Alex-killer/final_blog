@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Blog\HomeController@index')->name('home');
 
+Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
+   Route::get('/', 'PostController@index')->name('blog.index');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
