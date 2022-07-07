@@ -1,4 +1,9 @@
 @extends('blog.layouts.master')
+
+@section('carousel')
+    @include('blog.includes.carousel')
+@endsection
+
 @section('content')
     <section class="edica-landing-section edica-landing-about">
         <div class="container">
