@@ -24,18 +24,18 @@
 <main>
     @yield('content')
 </main>
-<section class="edica-footer-banner-section">
-    <div class="container">
-        <div class="footer-banner" data-aos="fade-up">
-            <h1 class="banner-title">Download it now.</h1>
-            <div class="banner-btns-wrapper">
-                <button class="btn btn-success"> <img src="assets/images/apple@1x.svg" alt="ios" class="mr-2"> App Store</button>
-                <button class="btn btn-success"> <img src="assets/images/android@1x.svg" alt="android" class="mr-2"> Google Play</button>
-            </div>
-            <p class="banner-text">Add some helper text here to explain the finer details of your <br> product or service.</p>
-        </div>
-    </div>
-</section>
+{{--<section class="edica-footer-banner-section">--}}
+{{--    <div class="container">--}}
+{{--        <div class="footer-banner" data-aos="fade-up">--}}
+{{--            <h1 class="banner-title">Download it now.</h1>--}}
+{{--            <div class="banner-btns-wrapper">--}}
+{{--                <button class="btn btn-success"> <img src="assets/images/apple@1x.svg" alt="ios" class="mr-2"> App Store</button>--}}
+{{--                <button class="btn btn-success"> <img src="assets/images/android@1x.svg" alt="android" class="mr-2"> Google Play</button>--}}
+{{--            </div>--}}
+{{--            <p class="banner-text">Add some helper text here to explain the finer details of your <br> product or service.</p>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 <footer class="edica-footer" data-aos="fade-up">
     <div class="container">
         <div class="row footer-widget-area">
@@ -58,8 +58,6 @@
                     <a href="#!" class="nav-link">Android App</a>
                     <a href="#!" class="nav-link">ios App</a>
                     <a href="#!" class="nav-link">Blog</a>
-                    <a href="#!" class="nav-link">Partners</a>
-                    <a href="#!" class="nav-link">Careers</a>
                 </nav>
             </div>
             <div class="col-md-3">
@@ -68,8 +66,6 @@
                     <a href="#!" class="nav-link">Reporting</a>
                     <a href="#!" class="nav-link">Block Storage</a>
                     <a href="#!" class="nav-link">Tools & Integrations</a>
-                    <a href="#!" class="nav-link">API</a>
-                    <a href="#!" class="nav-link">Pricing</a>
                 </nav>
             </div>
             <div class="col-md-3">

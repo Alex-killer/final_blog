@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Blog\HomeController@index')->name('home');
 
 Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
-   Route::get('/', 'PostController@index')->name('blog.index');
+   Route::get('/', 'PostController@index')->name('blog.post.index');
+   Route::get('/{post}', 'PostController@show')->name('blog.post.show');
+
+//   Route::get('/{post}/comment', 'CommentController@index')->name('blog.post.comment.index');
 });
 
 Auth::routes();
