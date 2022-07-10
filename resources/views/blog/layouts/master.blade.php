@@ -36,7 +36,7 @@
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</section>--}}
-<footer class="edica-footer" data-aos="fade-up">
+<footer class="edica-footer mt-3" data-aos="fade-up">
     <div class="container">
         <div class="row footer-widget-area">
             <div class="col-md-3">

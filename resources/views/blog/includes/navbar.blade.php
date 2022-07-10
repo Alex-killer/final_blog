@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="{{ route('home') }}"><img src="assets/images/logo.svg" alt="Blog"></a>
+    <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('images/logo.ico') }}" alt="Blog"></a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -43,6 +43,7 @@
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
+                        <a class="dropdown-item" href="{{ route('blog.admin.index') }}">{{ __('Admin panel') }}</a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf

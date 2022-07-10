@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Blog\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,13 @@ Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
    Route::get('/', 'PostController@index')->name('blog.post.index');
    Route::get('/{post}', 'PostController@show')->name('blog.post.show');
 
-//   Route::get('/{post}/comment', 'CommentController@index')->name('blog.post.comment.index');
+   Route::post('/{post}/comment', 'CommentController@store')->middleware('auth')->name('blog.post.comment.store');
+});
+
+Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware('auth')->group(function () {
+    Route::resource('/', 'HomeController');
+    Route::resource('/category', 'CategoryController');
+    Route::resource('/post', 'PostController');
 });
 
 Auth::routes();
