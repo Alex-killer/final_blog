@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Blog\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\Admin\Post\StoreRequest;
+use App\Http\Requests\Blog\Admin\Post\UpdateRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -46,6 +48,18 @@ class PostController extends Controller
         $input = $request->all();
         $input['user_id'] = \Auth::user()->id;
 
+        $input['image'] = Storage::disk('public')->put('/images/blog', $input['image']);
+
+//        $imageName = time() . '.' . $request->image->extension();
+//        $request->image->move(public_path('public/image'), $imageName);
+
+//        if($request->file('image')){
+//            $file = $request->file('image');
+//            $fileName = date('YmdHi_') . $file->getClientOriginalName();
+//            $file->move(public_path('image/blog/'), $fileName);
+//            $input['image'] = $fileName;
+//        }
+
         $post->create($input);
 
         return redirect()->route('blog.admin.post.index');
@@ -59,7 +73,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('blog.admin.post.show', compact('post'));
     }
 
     /**
@@ -70,7 +84,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+
+        return view('blog.admin.post.edit', compact('post', 'categories'));
     }
 
     /**
@@ -80,9 +96,18 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdateRequest $request, Post $post)
     {
-        //
+        $input = $request->all();
+        if (empty($input['image'])){
+            $input['image'] = $post->image;
+        } else {
+            $input['image'] = Storage::disk('public')->put('/images/blog', $input['image']);
+        }
+
+        $post->update($input);
+
+        return redirect()->route('blog.admin.post.show', $post->id);
     }
 
     /**
@@ -93,6 +118,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('blog.admin.post.index');
     }
 }

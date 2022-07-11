@@ -5,7 +5,8 @@
         <h1 class="edica-page-title" data-aos="fade-up">{{ $post->title }}</h1>
         <p class="edica-blog-post-meta" data-aos="fade-up" data-aos-delay="200">{{ $post->user->name }} • {{ $date->translatedFormat('j F Y') }} • {{ $post->comments->count() }} {{ __('Comments') }}</p>
         <section class="blog-post-featured-img text-center" data-aos="fade-up" data-aos-delay="300">
-            <img src="{{ $post->image }}" alt="featured image" class="w-90">
+            <img src="{{ url('storage/'.$post->image) }}" alt="featured image" class="w-90">
+{{--            <img src="{{ $post->image }}" alt="featured image" class="w-90">--}}
         </section>
         <section class="post-content">
             <div class="row">

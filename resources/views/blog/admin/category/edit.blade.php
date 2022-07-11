@@ -6,10 +6,6 @@
 
 @section('content')
 
-    @error('title')
-    <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
-
 <div class="col-md-6">
     <div class="card card-primary">
         <div class="card-header">
@@ -30,6 +26,9 @@
                         id="title"
                         placeholder="Enter title"
                         value="{{ $category->title }}">
+                    @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <!-- /.card-body -->

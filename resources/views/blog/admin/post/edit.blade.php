@@ -1,7 +1,7 @@
 @extends('blog.admin.layouts.admin-master')
 
 @section('title')
-    {{ __('Post creating') }}
+    {{ __('Post edit') }}
 @endsection
 
 @section('content')
@@ -13,8 +13,9 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="post" action="{{ route('blog.admin.post.store') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('blog.admin.post.update', $post->id) }}" enctype="multipart/form-data">
             @csrf
+            @method('PATCH')
             <div class="card-body">
                 <div class="form-group">
                     <label for="title">{{ __('Title') }}</label>
@@ -24,7 +25,7 @@
                         class="form-control"
                         id="title"
                         placeholder="Enter title"
-                        value="{{ old('title') }}"
+                        value="{{ $post->title }}"
                         autofocus>
                     @error('title')
                     <div class="text-danger">{{ $message }}</div>
@@ -36,7 +37,7 @@
                         id="summernote"
                         name="content"
                         placeholder="{{ __('Enter description') }}">
-                        {{ old('content') }}
+                        {{ $post->content }}
                     </textarea>
                     @error('content')
                     <div class="text-danger">{{ $message }}</div>
@@ -49,7 +50,9 @@
                         name="category_id"
                         id="category_id">
                         @foreach($categories as $category)
-                        <option value="{{ $category->id }}">
+                        <option
+                            value="{{ $category->id }}"
+                            {{ $category->id == $post->category->id ? ' selected' : ''}}>
                             {{ $category->title }}
                         </option>
                         @endforeach
@@ -60,6 +63,9 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">{{ __('Image input') }}</label>
+                    <div class="mb-3">
+                        <img src="{{ url('storage/'.$post->image) }}" width="100">
+                    </div>
                     <div class="input-group">
                         <div class="custom-file">
                             <input
