@@ -48,20 +48,19 @@ class PostController extends Controller
     public function store(StoreRequest $request, Post $post)
     {
         $input = $request->validated();
-        if (isset($input['tag_ids'])) {
-            $tagIds = $input['tag_ids'];
-            unset($input['tag_ids']);
-        }
-
+        if (isset($input['tag_ids']))
+        $tagIds = $input['tag_ids'];
+        unset($input['tag_ids']);
         $input['user_id'] = \Auth::user()->id;
         $input['image'] = Storage::disk('public')->put('/images/blog', $input['image']);
 
-        $post = Post::firstOrCreate($input);
-        if(isset($tagIds)) {
-            $post->tags()->attach($tagIds, ['created_at' => new \DateTime('now')]);
-        }
+        $post = Post::create($input);
+            if(isset($tagIds)) {
+                $post->tags()->attach($tagIds);
+            }
 
-        return redirect()->route('blog.admin.post.index');
+
+        return redirect()->route('blog.admin.post.show', $post->id);
     }
 
     /**
@@ -99,11 +98,10 @@ class PostController extends Controller
     public function update(UpdateRequest $request, Post $post)
     {
         $input = $request->validated();
-        if (isset($input['tag_ids'])) {
+        if (isset($input['tag_ids']))
             $tagIds = $input['tag_ids'];
-            unset($input['tag_ids']);
-        }
-
+        unset($input['tag_ids']);
+        $input['user_id'] = \Auth::user()->id;
         if (empty($input['image'])){
             $input['image'] = $post->image;
         } else {
@@ -112,12 +110,8 @@ class PostController extends Controller
 
         $post->update($input);
         if(isset($tagIds)) {
-            $post->tags()->sync($tagIds, ['created_at' => new \DateTime('now')]);
+            $post->tags()->sync($tagIds);
         }
-
-        return redirect()->route('blog.admin.post.index');
-
-        $post->update($input);
 
         return redirect()->route('blog.admin.post.show', $post->id);
     }

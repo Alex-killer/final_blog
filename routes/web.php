@@ -21,6 +21,7 @@ Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
    Route::get('/{post}', 'PostController@show')->name('blog.post.show');
 
    Route::post('/{post}/comment', 'CommentController@store')->middleware('auth')->name('blog.post.comment.store');
+   Route::post('/{post}/like', 'LikeController@update')->name('blog.post.like.update');
 });
 
 Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware('auth')->group(function () {

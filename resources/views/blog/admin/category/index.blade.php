@@ -33,15 +33,15 @@
                     <td>{{ $category->title }}</td>
                     <td>{{ $category->created_at }}</td>
                     <td class="project-actions text-center">
-                        <a href="{{ route('blog.admin.category.edit', $category->id) }}" class="btn btn-info btn-sm" role="button" data-bs-toggle="button">
+                        <a href="{{ route('blog.admin.category.edit', $category->id) }}" role="button" data-bs-toggle="button">
                             <i class="fas fa-pencil-alt">
                             </i>
                         </a>
                         <form method="POST" action="{{ route('blog.admin.category.destroy', $category->id) }}" style="display: inline-block">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm delete-btn">
-                                <i class="fas fa-trash">
+                            <button type="submit" class="border-0 bg-transparent">
+                                <i class="fas fa-trash text-danger" role="button px-1">
                                 </i>
                             </button>
                         </form>

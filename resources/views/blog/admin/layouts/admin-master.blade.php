@@ -46,10 +46,10 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('blog.admin.index') }}" class="nav-link">Home</a>
+                <a href="{{ route('blog.admin.index') }}" class="nav-link">{{ __('Home') }}</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
+                <a href="{{ route('home') }}" class="nav-link">{{ __('Blog') }}</a>
             </li>
         </ul>
 
@@ -286,6 +286,8 @@
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- bs-custom-file-input -->
+<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -335,6 +337,9 @@
                 ['height', ['height']]
             ]
         });
+    });
+    $(function () {
+        bsCustomFileInput.init();
     });
 </script>
 </body>

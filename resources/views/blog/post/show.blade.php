@@ -14,6 +14,29 @@
                 </div>
             </div>
         </section>
+        <section class="post-content">
+            <div class="col-lg-9 mx-auto" data-aos="fade-up">
+            @auth()
+                <form method="POST" action="{{ route('blog.post.like.update', $post->id) }}">
+                    @csrf
+                    <span>{{ $post->liked_users_count }}</span>
+                    <button type="submit" class="border-0 bg-transparent">
+                        @if(auth()->user()->likedPosts->contains($post->id))
+                            <i class="fas fa-heart"></i>
+                        @else
+                            <i class="far fa-heart"></i>
+                        @endif
+                    </button>
+
+                </form>
+            @endauth
+            @guest()
+                <div>
+                    <span>{{ $post->likedUsers->count('post_id') }}</span>
+                </div>
+            @endguest
+            </div>
+        </section>
         <div class="row">
             <div class="col-lg-9 mx-auto">
                 <section class="related-posts">

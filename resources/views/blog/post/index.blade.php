@@ -14,6 +14,25 @@
                     <a href="{{ route('blog.post.show', $post->id) }}" class="blog-post-permalink">
                         <h6 class="blog-post-title">{!! Str::limit($post->content, 100) !!}</h6>
                     </a>
+                    @auth()
+                    <form method="POST" action="{{ route('blog.post.like.update', $post->id) }}">
+                        @csrf
+                        <span>{{ $post->liked_users_count }}</span>
+                        <button type="submit" class="border-0 bg-transparent">
+                            @if(auth()->user()->likedPosts->contains($post->id))
+                                <i class="fas fa-heart"></i>
+                            @else
+                                <i class="far fa-heart"></i>
+                            @endif
+                        </button>
+
+                    </form>
+                    @endauth
+                    @guest()
+                        <div>
+                            <span>{{ $post->likedUsers->count('post_id') }}</span>
+                        </div>
+                    @endguest
                 </div>
                 @endforeach
             </div>

@@ -35,9 +35,7 @@
                     <textarea
                         id="summernote"
                         name="content"
-                        placeholder="{{ __('Enter description') }}">
-                        {{ old('content') }}
-                    </textarea>
+                        placeholder="{{ __('Enter description') }}">{{ old('content') }}</textarea>
                     @error('content')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -51,8 +49,7 @@
                         @foreach($categories as $category)
                         <option
                             {{ old('category_id') == $category->id ? 'selected' : '' }}
-                            value="{{ $category->id }}">
-                            {{ $category->title }}
+                            value="{{ $category->id }}">{{ $category->title }}
                         </option>
                         @endforeach
                     </select>
@@ -80,18 +77,19 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>{{ __('Tag') }}</label>
+                    <label>{{ __('Tags') }}</label>
                     <select
                         name="tag_ids[]"
+                        id="tags"
                         class="select2"
                         multiple="multiple"
-                        data-placeholder="{{ __('Select tag') }}"
+                        data-placeholder="Select a State"
                         style="width: 100%;">
                         @foreach($tags as $tag)
                         <option
                             {{ is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? 'selected' : '' }}
-                            value="{{ $tag->id }}">
-                            {{ $tag->title }}</option>
+                            value="{{ $tag->id }}">{{ $tag->title }}
+                        </option>
                         @endforeach
                     </select>
                     @error('tag_ids')
