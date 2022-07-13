@@ -5,8 +5,7 @@
         <h1 class="edica-page-title" data-aos="fade-up">{{ $post->title }}</h1>
         <p class="edica-blog-post-meta" data-aos="fade-up" data-aos-delay="200">{{ $post->user->name }} • {{ $date->translatedFormat('j F Y') }} • {{ $post->comments->count() }} {{ __('Comments') }}</p>
         <section class="blog-post-featured-img text-center" data-aos="fade-up" data-aos-delay="300">
-            <img src="{{ url('storage/'.$post->image) }}" alt="featured image" class="w-90">
-{{--            <img src="{{ $post->image }}" alt="featured image" class="w-90">--}}
+            <img src="{{ url('storage/'.$post->image) }}" alt="featured image" height="600">
         </section>
         <section class="post-content">
             <div class="row">
@@ -22,7 +21,7 @@
                     <div class="row">
                         @foreach($relatedPosts as $relatedPost)
                         <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
-                            <img src="{{ $relatedPost->image }}" alt="related post" class="post-thumbnail">
+                            <img src="{{ url('storage/'.$relatedPost->image) }}" alt="related post" class="post-thumbnail">
                             <p class="post-category">{{ $relatedPost->category->title }}</p>
                             <h5 class="post-title"><a href="{{ $relatedPost->id }}">{{ $relatedPost->title }}</a></h5>
                         </div>

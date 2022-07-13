@@ -44,7 +44,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>{{ __('Select') }}</label>
+                    <label>{{ __('Category') }}</label>
                     <select
                         class="form-control"
                         name="category_id"
@@ -80,6 +80,25 @@
                         </div>
                     </div>
                     @error('image')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <div class="form-group">
+                        <label>{{ __('Tag') }}</label>
+                        <select
+                            name="tag_ids[]"
+                            class="select2"
+                            multiple="multiple"
+                            data-placeholder="{{ __('Select tag') }}"
+                            style="width: 100%;">
+                            @foreach($tags as $tag)
+                                <option
+                                    {{ is_array($tag->id) == $post->tags->id ? 'selected' : '' }}
+                                    value="{{ $tag->id }}">
+                                    {{ $tag->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @error('tag_ids')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
