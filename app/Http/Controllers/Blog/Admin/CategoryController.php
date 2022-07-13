@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\Admin\Category\StoreRequest;
 use App\Http\Requests\Blog\Admin\Category\UpdateRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -42,6 +41,7 @@ class CategoryController extends Controller
     public function store(StoreRequest $request, Category $category)
     {
         $input = $request->all();
+        dd($input);
         $category->create($input);
 
         return redirect()->route('blog.admin.category.index');

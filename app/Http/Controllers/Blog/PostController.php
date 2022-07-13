@@ -13,9 +13,10 @@ class PostController extends Controller
     {
         $posts = Post::paginate(6);
         $randomPosts = Post::get()->random(4);
+        $likedPost = Post::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get()->take(4);
 
 
-        return view('blog.post.index', compact('posts', 'randomPosts'));
+        return view('blog.post.index', compact('posts', 'randomPosts', 'likedPost'));
     }
 
     public function show(Post $post)

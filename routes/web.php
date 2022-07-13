@@ -24,10 +24,15 @@ Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
    Route::post('/{post}/like', 'LikeController@update')->name('blog.post.like.update');
 });
 
+   Route::get('/category', 'Blog\CategoryController@index')->name('blog.category.index');
+   Route::get('/category/{category}/posts', 'Blog\CategoryController@show')->name('blog.category.show');
+
+
 Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware('auth')->group(function () {
     Route::resource('/', 'HomeController');
     Route::resource('/category', 'CategoryController');
     Route::resource('/post', 'PostController');
+    Route::resource('/tag', 'TagController');
 });
 
 Auth::routes();

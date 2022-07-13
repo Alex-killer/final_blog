@@ -31,8 +31,9 @@
                 </form>
             @endauth
             @guest()
-                <div>
+                <div class="mb-3">
                     <span>{{ $post->likedUsers->count('post_id') }}</span>
+                    <i class="far fa-heart"></i>
                 </div>
             @endguest
             </div>
