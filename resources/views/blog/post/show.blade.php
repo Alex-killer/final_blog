@@ -15,6 +15,29 @@
                 </div>
             </div>
         </section>
+        <section class="post-content">
+            <div class="col-lg-9 mx-auto" data-aos="fade-up">
+            @auth()
+                <form method="POST" action="{{ route('blog.post.like.update', $post->id) }}">
+                    @csrf
+                    <span>{{ $post->liked_users_count }}</span>
+                    <button type="submit" class="border-0 bg-transparent">
+                        @if(auth()->user()->likedPosts->contains($post->id))
+                            <i class="fas fa-heart"></i>
+                        @else
+                            <i class="far fa-heart"></i>
+                        @endif
+                    </button>
+
+                </form>
+            @endauth
+            @guest()
+                <div>
+                    <span>{{ $post->likedUsers->count('post_id') }}</span>
+                </div>
+            @endguest
+            </div>
+        </section>
         <div class="row">
             <div class="col-lg-9 mx-auto">
                 <section class="related-posts">
@@ -22,7 +45,7 @@
                     <div class="row">
                         @foreach($relatedPosts as $relatedPost)
                         <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
-                            <img src="{{ $relatedPost->image }}" alt="related post" class="post-thumbnail">
+                            <img src="{{ url('storage/'.$relatedPost->image) }}" alt="related post" class="post-thumbnail">
                             <p class="post-category">{{ $relatedPost->category->title }}</p>
                             <h5 class="post-title"><a href="{{ $relatedPost->id }}">{{ $relatedPost->title }}</a></h5>
                         </div>

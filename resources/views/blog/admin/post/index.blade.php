@@ -47,7 +47,7 @@
                         <form method="POST" action="{{ route('blog.admin.post.destroy', $post->id) }}" style="display: inline-block">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="border-0 bg-opacity">
+                            <button type="submit" class="border-0 bg-transparent">
                                 <i class="fas fa-trash text-danger" role="button px-1">
                                 </i>
                             </button>

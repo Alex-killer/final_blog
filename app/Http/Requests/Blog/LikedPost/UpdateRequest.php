@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Blog\Admin\Post;
+namespace App\Http\Requests\Blog\LikedPost;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,12 +24,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|min:3|max:255',
-            'content' => 'required|string',
-            'category_id' => 'required|integer|exists:categories,id',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'tag_ids' => 'nullable|array',
-            'tag_ids.*' => 'nullable|integer|exists:tags,id',
+            'user_id' => '',
+            'post_id' => '',
         ];
     }
 }
