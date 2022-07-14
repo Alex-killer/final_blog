@@ -41,7 +41,6 @@ class CategoryController extends Controller
     public function store(StoreRequest $request, Category $category)
     {
         $input = $request->all();
-        dd($input);
         $category->create($input);
 
         return redirect()->route('blog.admin.category.index');

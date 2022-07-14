@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -42,6 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user');
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -54,6 +60,6 @@ class User extends Authenticatable
 
     public function likedPosts()
     {
-        return $this->belongsToMany(Post::class, 'post_user_likes', 'user_id', 'post_id');
+        return $this->belongsToMany(Post::class, 'post_user_likes');
     }
 }

@@ -8,10 +8,15 @@ use App\Models\Tag;
 
 class TagController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $tags = Tag::paginate(10);
-        $tags_count = Tag::all()->count();
+        $tags_count = Tag::count();
 
         return view('blog.admin.tag.index', compact('tags', 'tags_count'));
     }

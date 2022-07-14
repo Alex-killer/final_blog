@@ -35,6 +35,14 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
+                    <a href="{{ route('blog.admin.user.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            {{ __('User') }}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('blog.admin.category.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>

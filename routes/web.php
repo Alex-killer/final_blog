@@ -33,6 +33,7 @@ Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware
     Route::resource('/category', 'CategoryController');
     Route::resource('/post', 'PostController');
     Route::resource('/tag', 'TagController');
+    Route::resource('/user', 'UserController');
 });
 
 Auth::routes();
