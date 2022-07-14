@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,9 +15,10 @@ class PostController extends Controller
         $posts = Post::paginate(6);
         $randomPosts = Post::get()->random(4);
         $likedPost = Post::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get()->take(4);
+        $categories = Category::first()->get();
 
 
-        return view('blog.post.index', compact('posts', 'randomPosts', 'likedPost'));
+        return view('blog.post.index', compact('posts', 'randomPosts', 'likedPost', 'categories'));
     }
 
     public function show(Post $post)

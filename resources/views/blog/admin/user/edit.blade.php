@@ -48,8 +48,8 @@
                     <label>{{ __('Role') }}</label>
                     <select
                         class="form-control"
-                        name="role"
-                        id="role">
+                        name="role_id"
+                        id="role_id">
                         @foreach($roles as $role)
                             <option
                                 {{ is_array( $user->roles->pluck('id')->toArray() ) &&
@@ -58,7 +58,7 @@
                             </option>
                         @endforeach
                     </select>
-                    @error('role')
+                    @error('role_id')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>

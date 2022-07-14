@@ -8,6 +8,7 @@ use App\Http\Requests\Blog\Admin\Post\UpdateRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,10 +19,18 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::paginate(10);
+        $search = $request->input('search');
+
         $posts_count = Post::count();
+        $posts = Post::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('content', 'LIKE', "%{$search}%")
+            ->orWhereHas('category', function (Builder $query) use ($search) {
+                $query->where('title', 'LIKE', "%{$search}%");
+            })
+            ->paginate(10);
 
         return view('blog.admin.post.index', compact('posts', 'posts_count'));
     }

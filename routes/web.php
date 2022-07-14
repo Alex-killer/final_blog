@@ -28,7 +28,7 @@ Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
    Route::get('/category/{category}/posts', 'Blog\CategoryController@show')->name('blog.category.show');
 
 
-Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/', 'HomeController');
     Route::resource('/category', 'CategoryController');
     Route::resource('/post', 'PostController');

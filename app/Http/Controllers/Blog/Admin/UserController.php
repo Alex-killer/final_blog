@@ -44,7 +44,7 @@ class UserController extends Controller
      */
     public function store(StoreRequest $request, User $user)
     {
-        $input = $request->validated();
+        $input = $request->all();
         if (isset($input['role_id']))
             $roleId = $input['role_id'];
         unset($input['role_id']);
@@ -89,12 +89,11 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, User $user)
     {
-        $input = $request->validate();
-        dd($input);
+        $input = $request->all();
         if (isset($input['role_id']))
             $roleId = $input['role_id'];
         unset($input['role_id']);
-        dd($input);
+        unset($input['user_id']);
         $user->update($input);
         $user->roles()->sync($roleId);
 

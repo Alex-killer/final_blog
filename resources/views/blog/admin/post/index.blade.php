@@ -8,6 +8,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">{{ __('Posts') }}</h3>
+            <div></div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <a href="{{ route('blog.admin.post.create') }}" class="btn btn-primary">{{ __('Create') }}</a>
             </div>
