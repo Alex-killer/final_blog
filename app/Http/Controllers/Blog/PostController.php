@@ -6,16 +6,31 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::paginate(6);
+        $search = $request->input('search');
+
         $randomPosts = Post::get()->random(4);
         $likedPost = Post::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get()->take(4);
         $categories = Category::first()->get();
+
+        if(request('search')) {
+            $posts = Post::query()
+                ->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('content', 'LIKE', "%{$search}%")
+                ->orWhereHas('category', function (Builder $query) use ($search) {
+                    $query->where('title', 'LIKE', "%{$search}%");
+                })
+                ->paginate(6);
+        } else {
+            $posts = Post::paginate(6);
+    }
+
 
 
         return view('blog.post.index', compact('posts', 'randomPosts', 'likedPost', 'categories'));

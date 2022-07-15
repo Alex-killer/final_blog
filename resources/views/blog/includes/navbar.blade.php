@@ -23,6 +23,21 @@
             </li>
         </ul>
         <ul class="navbar-nav mt-2 mt-lg-0">
+
+            <!-- SidebarSearch Form -->
+            <div class="form-inline">
+                <form action="{{ route('blog.post.index') }}">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input name="search" class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar" type="button">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             @guest
                 @if (Route::has('login'))
                     <li class="nav-item">
