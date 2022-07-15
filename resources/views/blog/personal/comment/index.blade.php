@@ -19,6 +19,7 @@
                 <tr>
                     <th style="width: 10px">#</th>
                     <th >{{ __('Message') }}</th>
+                    <th >{{ __('Post') }}</th>
                     <th style="width: 10%">{{ __('Create') }}</th>
                     <th class="text-center" style="width: 15%">{{ __('Actions') }}</th>
                 </tr>
@@ -28,6 +29,7 @@
                     <tr>
                         <td>{{ $comment_post->id }}.</td>
                         <td>{{ Str::limit($comment_post->description, 50) }}</td>
+                        <td>{{ $comment_post->post->title }}.</td>
                         <td>{{ $comment_post->created_at }}</td>
                         <td class="project-actions text-center">
                             <a href="{{ route('blog.admin.category.edit', $comment_post->id) }}" role="button" data-bs-toggle="button">
