@@ -31,8 +31,6 @@ class PostController extends Controller
             $posts = Post::paginate(6);
     }
 
-
-
         return view('blog.post.index', compact('posts', 'randomPosts', 'likedPost', 'categories'));
     }
 

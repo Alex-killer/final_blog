@@ -21,14 +21,14 @@ Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
    Route::get('/{post}', 'PostController@show')->name('blog.post.show');
 
    Route::post('/{post}/comment', 'CommentController@store')->middleware('auth')->name('blog.post.comment.store');
-   Route::post('/{post}/like', 'LikeController@update')->name('blog.post.like.update');
+   Route::post('/{post}/like', 'LikeController@update')->middleware('auth')->name('blog.post.like.update');
 });
 
    Route::get('/category', 'Blog\CategoryController@index')->name('blog.category.index');
    Route::get('/category/{category}/posts', 'Blog\CategoryController@show')->name('blog.category.show');
 
 
-Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware(['auth', 'admin'])->group(function () {
+Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware(['admin'])->group(function () {
     Route::resource('/', 'HomeController');
     Route::resource('/category', 'CategoryController')->except(['show']);
     Route::resource('/post', 'PostController');
