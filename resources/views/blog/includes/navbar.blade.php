@@ -50,14 +50,18 @@
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @endif
-            @else
+            @endguest
+            @auth
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('blog.admin.index') }}">{{ __('Admin panel') }}</a>
+                        @if(Auth::user()->isAdmin())
+                            <a class="dropdown-item" href="{{ route('blog.admin.index') }}">{{ __('Admin panel') }}</a>
+                        @endif
+                        <a class="dropdown-item" href="{{ route('blog.personal.index') }}">{{ __('Personal area') }}</a>
 
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
@@ -69,7 +73,7 @@
                         </form>
                     </div>
                 </li>
-            @endguest
+            @endauth
         </ul>
     </div>
 </nav>

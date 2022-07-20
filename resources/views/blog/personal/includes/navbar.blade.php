@@ -20,7 +20,7 @@
                 <i class="fas fa-search"></i>
             </a>
             <div class="navbar-search-block">
-                <form action="{{ route('blog.admin.post.index') }}" class="form-inline">
+                <form action="{{ route('blog.personal.comment.index') }}" class="form-inline">
                     <div class="input-group input-group-sm">
                         <input name="search" class="form-control form-control-navbar" type="text" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
