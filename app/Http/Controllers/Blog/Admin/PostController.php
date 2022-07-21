@@ -61,7 +61,7 @@ class PostController extends Controller
         $tagIds = $input['tag_ids'];
         unset($input['tag_ids']);
         $input['user_id'] = \Auth::user()->id;
-        $input['image'] = Storage::disk('public')->put('/images/blog', $input['image']);
+        $input['image'] = Storage::disk('public')->put('/images/blog/post', $input['image']);
 
         $post = Post::create($input);
             if(isset($tagIds)) {

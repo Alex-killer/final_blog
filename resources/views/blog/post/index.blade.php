@@ -1,8 +1,29 @@
 @extends('blog.layouts.master')
+
+@section('title')
+    {{ __('Blog') }}
+@endsection
+
 @section('content')
 <main class="blog">
     <div class="container">
         <h1 class="edica-page-title" data-aos="fade-up">{{ __('Blog') }}</h1>
+        <section class="featured-posts-section">
+            <div class="row">
+                <div class="col-md-8 offset-md-2 mb-5" data-aos="fade-up">
+                    <form action="{{ route('blog.post.index') }}">
+                        <div class="input-group">
+                            <input name="search" type="search" class="form-control form-control-lg" placeholder="{{ __('Type your keywords here') }}">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-lg btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
         <section class="featured-posts-section">
             <div class="row">
                 @if($posts->isNotEmpty())

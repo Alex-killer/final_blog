@@ -20,7 +20,7 @@ class PostFactory extends Factory
             'user_id' => rand(1, 10),
             'title' => $this->faker->unique()->word,
             'content' => '<p>' . implode('<p></p>', $this->faker->paragraphs(6)) . '</p>',
-            'image' => 'images/blog/' . $image . '.jpg',
+            'image' => 'images/blog/post/' . $image . '.jpg',
             'is_published' => $this->faker-> dateTimeBetween($startDate = '-3 years', $endDate = 'now', $timezone = null)
         ];
     }

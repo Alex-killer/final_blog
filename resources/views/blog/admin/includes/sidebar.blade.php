@@ -48,6 +48,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('blog.admin.article.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>
+                            {{ __('Article') }}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('blog.admin.tag.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-pencil-alt"></i>
                         <p>

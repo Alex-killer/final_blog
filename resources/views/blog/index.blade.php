@@ -1,5 +1,9 @@
 @extends('blog.layouts.master')
 
+@section('title')
+    {{ __('Home') }}
+@endsection
+
 @section('carousel')
     @include('blog.includes.carousel')
 @endsection
@@ -42,146 +46,29 @@
             <h4 class="edica-landing-section-subtitle">Service We Offer</h4>
             <h2 class="edica-landing-section-title">What features you will <br> Get from App.</h2>
             <div class="row">
-                <div class="col-md-6 landing-service-card" data-aos="fade-right">
-                    <img src="assets/images/picture.svg" alt="card img" class="img-fluid service-card-img">
-                    <h4 class="service-card-title">Live Video</h4>
-                    <p class="service-card-description">He has led a remarkable campaign, defying the traditional mainstream parties courtesy of his En Marche! movement. For many, however, the.</p>
-                </div>
+                @foreach($randomPosts as $randomPost)
                 <div class="col-md-6 landing-service-card" data-aos="fade-left">
-                    <img src="assets/images/internet.svg" alt="card img" class="img-fluid service-card-img">
-                    <h4 class="service-card-title">Secure and Reliable</h4>
-                    <p class="service-card-description">He has led a remarkable campaign, defying the traditional mainstream parties courtesy of his En Marche! movement. For many, however, the.</p>
+                    <img src="{{ url('storage/'.$randomPost->image) }}" alt="card img" class="img-fluid service-card-img">
+                    <h4 class="service-card-title">{{ $randomPost->title }}</h4>
+                    <p class="service-card-description">{!! Str::limit($randomPost->content, 100) !!}</p>
                 </div>
-                <div class="col-md-6 landing-service-card" data-aos="fade-right">
-                    <img src="assets/images/goal.svg" alt="card img" class="img-fluid service-card-img">
-                    <h4 class="service-card-title">Fast. Instantly.</h4>
-                    <p class="service-card-description">He has led a remarkable campaign, defying the traditional mainstream parties courtesy of his En Marche! movement. For many, however, the.</p>
-                </div>
-                <div class="col-md-6 landing-service-card" data-aos="fade-left">
-                    <img src="assets/images/chat-bubble.svg" alt="card img" class="img-fluid service-card-img">
-                    <h4 class="service-card-title">Built-in Messenger</h4>
-                    <p class="service-card-description">He has led a remarkable campaign, defying the traditional mainstream parties courtesy of his En Marche! movement. For many, however, the.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="edica-landing-section edica-landing-testimonials" data-aos="fade-up">
-        <div class="container">
-            <div id="edicaLandingTestimonialCarousel" class="carousel slide landing-testimonial-carousel" data-ride="carousel">
-                <div class="text-center py-4">
-                    <img src="assets/images/quote.svg" alt="quote">
-                </div>
-                <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item">
-                        <blockquote class="testimonial">
-                            <p>“My mission in life is not merely to survive, but to thrive; and to do so with some passion, some compassion, some humor, and some style.” </p>
-                        </blockquote>
-                    </div>
-                    <div class="carousel-item">
-                        <blockquote class="testimonial">
-                            <p>“My mission in life is not merely to survive, but to thrive; and to do so with some passion, some compassion, some humor, and some style.” </p>
-                        </blockquote>
-                    </div>
-                    <div class="carousel-item active">
-                        <blockquote class="testimonial">
-                            <p>“My mission in life is not merely to survive, but to thrive; and to do so with some passion, some compassion, some humor, and some style.” </p>
-                        </blockquote>
-                    </div>
-                    <div class="carousel-item">
-                        <blockquote class="testimonial">
-                            <p>“My mission in life is not merely to survive, but to thrive; and to do so with some passion, some compassion, some humor, and some style.” </p>
-                        </blockquote>
-                    </div>
-                    <div class="carousel-item">
-                        <blockquote class="testimonial">
-                            <p>“My mission in life is not merely to survive, but to thrive; and to do so with some passion, some compassion, some humor, and some style.” </p>
-                        </blockquote>
-                    </div>
-                </div>
-                <ol class="carousel-indicators">
-                    <li data-target="#edicaLandingTestimonialCarousel" data-slide-to="0">
-                        <img src="assets/images/oval-copy-3.png" alt="avatar">
-                        <div class="user-details">
-                            <h6>Gabie Sheber</h6>
-                            <p>Developer</p>
-                        </div>
-                    </li>
-                    <li data-target="#edicaLandingTestimonialCarousel" data-slide-to="1">
-                        <img src="assets/images/oval-copy-4.png" alt="avatar">
-                        <div class="user-details">
-                            <h6>Gabie Sheber</h6>
-                            <p>Developer</p>
-                        </div>
-                    </li>
-                    <li data-target="#edicaLandingTestimonialCarousel" data-slide-to="2" class="active">
-                        <img src="assets/images/oval.png" alt="avatar">
-                        <div class="user-details">
-                            <h6>Gabie Sheber</h6>
-                            <p>Developer</p>
-                        </div>
-
-                    </li>
-                    <li data-target="#edicaLandingTestimonialCarousel" data-slide-to="3">
-                        <img src="assets/images/oval-copy.png" alt="avatar">
-                        <div class="user-details">
-                            <h6>Gabie Sheber</h6>
-                            <p>Developer</p>
-                        </div>
-                    </li>
-                    <li data-target="#edicaLandingTestimonialCarousel" data-slide-to="4">
-                        <img src="assets/images/oval-copy-2.png" alt="avatar">
-                        <div class="user-details">
-                            <h6>Gabie Sheber</h6>
-                            <p>Developer</p>
-                        </div>
-                    </li>
-                </ol>
+                @endforeach
             </div>
         </div>
     </section>
     <section class="edica-landing-section edica-landing-blog">
         <div class="container">
-            <h4 class="edica-landing-section-subtitle" data-aos="fade-up">Blog posts</h4>
-            <h2 class="edica-landing-section-title" data-aos="fade-up">Check our app latest blog post <br> for more update.</h2>
+            <h4 class="edica-landing-section-subtitle" data-aos="fade-up">{{ __('Blog posts') }}</h4>
+            <h2 class="edica-landing-section-title" data-aos="fade-up">{{ __('Most popular posts') }}</h2>
             <div class="row">
+                @foreach($likedPosts as $likedPost)
                 <div class="col-md-4 landing-blog-post" data-aos="fade-right">
-                    <img src="assets/images/rectangle.png" alt="blog post" class="blog-post-thumbnail">
-                    <p class="blog-post-category">Blog post</p>
-                    <h4 class="blog-post-title">Check our latest blog post for more update.</h4>
-                    <a href="#!" class="blog-post-link">Learn more</a>
+                    <img src="{{ url('storage/'.$likedPost->image) }}" alt="blog post" class="blog-post-thumbnail">
+                    <p class="blog-post-category">{{ $likedPost->category->title }}</p>
+                    <h4 class="blog-post-title">{{ $likedPost->title }}</h4>
+                    <a href="{{ route('blog.post.show', $likedPost->id) }}" class="blog-post-link">Learn more</a>
                 </div>
-                <div class="col-md-4 landing-blog-post" data-aos="fade-up">
-                    <img src="assets/images/rectangle-copy.png" alt="blog post" class="blog-post-thumbnail">
-                    <p class="blog-post-category">Blog post</p>
-                    <h4 class="blog-post-title">Check our latest blog post for more update.</h4>
-                    <a href="#!" class="blog-post-link">Learn more</a>
-                </div>
-                <div class="col-md-4 landing-blog-post" data-aos="fade-left">
-                    <img src="assets/images/rectangle-copy-2.png" alt="blog post" class="blog-post-thumbnail">
-                    <p class="blog-post-category">Blog post</p>
-                    <h4 class="blog-post-title">Check our latest blog post for more update.</h4>
-                    <a href="#!" class="blog-post-link">Learn more</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="edica-landing-section edica-landing-blog-posts">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="blog-post-card blog-post-1 mb-4 mb-md-0" data-aos="fade-right">
-                        <p class="post-category">App Design</p>
-                        <h2 class="post-title">Check our latest blog post for more update.</h2>
-                        <a href="#!" class="post-link">Learn more</a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="blog-post-card blog-post-2" data-aos="fade-left">
-                        <p class="post-category">App Design</p>
-                        <h2 class="post-title">Check our latest blog post for more update.</h2>
-                        <a href="#!" class="post-link">Learn more</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

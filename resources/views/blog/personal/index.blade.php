@@ -14,7 +14,7 @@
                     <div class="icon">
                         <i class="nav-icon fas fa-list"></i>
                     </div>
-                    <a href="{{ route('blog.admin.category.index') }}" class="small-box-footer">{{ __('More info') }} <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('blog.personal.liked.index') }}" class="small-box-footer">{{ __('More info') }} <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -29,7 +29,7 @@
                     <div class="icon">
                         <i class="nav-icon fas fa-paste"></i>
                     </div>
-                    <a href="{{ route('blog.admin.post.index') }}" class="small-box-footer">{{ __('More info') }} <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('blog.personal.comment.index') }}" class="small-box-footer">{{ __('More info') }} <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

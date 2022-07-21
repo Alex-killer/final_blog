@@ -9,7 +9,7 @@
                 <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }} <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="about.html">{{ __('About') }}</a>
+                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('Blog') }}</a>
@@ -19,24 +19,10 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="contact.html">{{ __('Contact') }}</a>
+                <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
             </li>
         </ul>
         <ul class="navbar-nav mt-2 mt-lg-0">
-
-            <!-- SidebarSearch Form -->
-            <div class="form-inline">
-                <form action="{{ route('blog.post.index') }}">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input name="search" class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar" type="button">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
 
             @guest
                 @if (Route::has('login'))

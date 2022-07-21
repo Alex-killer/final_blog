@@ -1,4 +1,9 @@
 @extends('blog.layouts.master')
+
+@section('title')
+    {{ __('Category') }}
+@endsection
+
 @section('content')
     <main class="blog">
         <div class="container">

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Blog\HomeController@index')->name('home');
+Route::get('/about', 'Blog\HomeController@about')->name('about');
+Route::get('/contact', 'Blog\HomeController@contact')->name('contact');
 
 Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
    Route::get('/', 'PostController@index')->name('blog.post.index');
@@ -28,10 +30,11 @@ Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
    Route::get('/category/{category}/posts', 'Blog\CategoryController@show')->name('blog.category.show');
 
 
-Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware(['admin'])->group(function () {
+Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/', 'HomeController');
     Route::resource('/category', 'CategoryController')->except(['show']);
     Route::resource('/post', 'PostController');
+    Route::resource('/article', 'ArticleController');
     Route::resource('/tag', 'TagController')->only(['index', 'create', 'store', 'destroy']);
     Route::resource('/user', 'UserController');
 });
