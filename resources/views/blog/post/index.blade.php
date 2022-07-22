@@ -5,6 +5,16 @@
 @endsection
 
 @section('content')
+    <script>
+        let obj = {
+            name: 'Ivan',
+            sayHello: function () {
+                console.log('Hello');
+            }
+        }
+        obj.sayHello()
+
+    </script>
 <main class="blog">
     <div class="container">
         <h1 class="edica-page-title" data-aos="fade-up">{{ __('Blog') }}</h1>
@@ -36,7 +46,7 @@
                             <p class="blog-post-category">{{ $post->category->title }}</p>
                         </a>
                         <a href="{{ route('blog.post.show', $post->id) }}" class="blog-post-permalink">
-                            <h6 class="blog-post-title">{!! Str::limit($post->content, 100) !!}</h6>
+                            <h6 class="blog-post-title">{!! Str::limit($post->content, 80) !!}</h6>
                         </a>
                         @auth()
                         <form method="POST" action="{{ route('blog.post.like.update', $post->id) }}">
@@ -44,7 +54,7 @@
                             <span>{{ $post->liked_users_count }}</span>
                             <button type="submit" class="border-0 bg-transparent">
                                 @if(auth()->user()->likedPosts->contains($post->id))
-                                    <i class="fas fa-heart"></i>
+                                    <i class="fas fa-heart text-danger"></i>
                                 @else
                                     <i class="far fa-heart"></i>
                                 @endif

@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
          PostTag::factory(100)->create();
          Comment::factory(100)->create();
          Role::factory(1)->create();
-         PostUserLike::factory(100)->create();
+         PostUserLike::factory(200)->create();
 
         Role::create([
             'id' => '1001',
