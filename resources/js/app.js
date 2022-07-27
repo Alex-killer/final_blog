@@ -1,7 +1,12 @@
-import './bootstrap';
+import Vue from 'vue'
+import PostComponent from "./components/PostComponent";
+require('./bootstrap');
 
-import Alpine from 'alpinejs';
 
-window.Alpine = Alpine;
+const app = new Vue({
+    el: '#app',
 
-Alpine.start();
+    components: {
+        PostComponent,
+    }
+})
