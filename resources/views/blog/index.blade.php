@@ -43,8 +43,7 @@
     </section>
     <section class="edica-landing-section edica-landing-services">
         <div class="container">
-            <h4 class="edica-landing-section-subtitle">Service We Offer</h4>
-            <h2 class="edica-landing-section-title">What features you will <br> Get from App.</h2>
+            <h2 class="edica-landing-section-title">{{ __('My Blog') }}</h2>
             <div class="row">
                 @foreach($randomPosts as $randomPost)
                 <div class="col-md-6 landing-service-card" data-aos="fade-left">

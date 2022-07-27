@@ -11,6 +11,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('blog.article.index') }}">{{ __('Articles') }}</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('Blog') }}</a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">

@@ -5,16 +5,6 @@
 @endsection
 
 @section('content')
-    <script>
-        let obj = {
-            name: 'Ivan',
-            sayHello: function () {
-                console.log('Hello');
-            }
-        }
-        obj.sayHello()
-
-    </script>
 <main class="blog">
     <div class="container">
         <h1 class="edica-page-title" data-aos="fade-up">{{ __('Blog') }}</h1>
@@ -124,7 +114,7 @@
             </div>
             <div class="col-md-4 sidebar" data-aos="fade-left">
                 <div class="widget widget-post-carousel">
-                    <h5 class="widget-title">Post Lists</h5>
+                    <h5 class="widget-title">{{ __('Articles') }}</h5>
                     <div class="post-carousel">
                         <div id="carouselId" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
@@ -133,24 +123,14 @@
                                 <li data-target="#carouselId" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner" role="listbox">
-                                <figure class="carousel-item active">
-                                    <img src="assets/images/blog_widget_carousel.jpg" alt="First slide">
+                                @foreach($articles as $key => $article)
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                    <img src="{{ url('storage/'.$article->image) }}" alt="First slide">
                                     <figcaption class="post-title">
-                                        <a href="#!">Front becomes an official Instagram Marketing Partner</a>
-                                    </figcaption>
-                                </figure>
-                                <figure class="carousel-item">
-                                    <img src="assets/images/blog_7.jpg" alt="First slide">
-                                    <figcaption class="post-title">
-                                        <a href="#!">Front becomes an official Instagram Marketing Partner</a>
-                                    </figcaption>
-                                </figure>
-                                <div class="carousel-item">
-                                    <img src="assets/images/blog_5.jpg" alt="First slide">
-                                    <figcaption class="post-title">
-                                        <a href="#!">Front becomes an official Instagram Marketing Partner</a>
+                                        <a href="{{ route('blog.article.show', $article->id) }}">{!! Str::limit($article->description, 50) !!}</a>
                                     </figcaption>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -160,7 +140,7 @@
                     <ul class="post-list">
                         @foreach($likedPost as $post)
                             <li class="post">
-                                <a href="{{ route('blog.admin.post.show', $post->id) }}" class="post-permalink media">
+                                <a href="{{ route('blog.post.show', $post->id) }}" class="post-permalink media">
                                     <img src="{{ url('storage/'.$post->image) }}" alt="blog post">
                                     <div class="media-body">
                                         <h6 class="post-title">{{ $post->title }}</h6>
