@@ -34,7 +34,7 @@ Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
 
 
 Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware(['auth', 'admin'])->group(function () {
-    Route::resource('/', 'HomeController');
+    Route::resource('/', 'HomeController')->only(['index']);
     Route::resource('/category', 'CategoryController')->except(['show']);
     Route::resource('/post', 'PostController');
     Route::resource('/article', 'ArticleController');
@@ -43,9 +43,9 @@ Route::prefix('admin')->name('blog.admin.')->namespace('Blog\Admin')->middleware
 });
 
 Route::prefix('personal')->name('blog.personal.')->namespace('Blog\Personal')->middleware(['auth'])->group(function () {
-    Route::resource('/', 'HomeController');
-    Route::resource('/comment', 'CommentController');
-    Route::resource('/liked', 'LikedController');
+    Route::resource('/', 'HomeController')->only(['index']);
+    Route::resource('/comment', 'CommentController')->only(['index', 'show', 'destroy']);
+    Route::resource('/liked', 'LikedController')->only(['index']);
 });
 
 Auth::routes();
