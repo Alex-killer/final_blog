@@ -47,7 +47,7 @@
             <div class="row">
                 @foreach($randomPosts as $randomPost)
                 <div class="col-md-6 landing-service-card" data-aos="fade-left">
-                    <img src="{{ url('storage/'.$randomPost->image) }}" alt="card img" class="img-fluid service-card-img">
+                    <a href="{{ route('blog.post.show', $randomPost->id) }}"><img src="{{ url('storage/'.$randomPost->image) }}" alt="card img" class="img-fluid service-card-img"></a>
                     <h4 class="service-card-title">{{ $randomPost->title }}</h4>
                     <p class="service-card-description">{!! Str::limit($randomPost->content, 100) !!}</p>
                 </div>
