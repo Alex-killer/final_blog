@@ -14,7 +14,7 @@
                         <p>{!! Str::limit($randomArticle->description, 150) !!}</p>
                     </div>
                     <div class="col-md-6 carousel-img-wrapper">
-                        <img src="{{ url('storage/'.$randomArticle->image) }}" alt="carousel-img" class="img-fluid" width="350px">
+                        <a href="{{ route('blog.article.show', $randomArticle->title) }}"><img src="{{ url('storage/'.$randomArticle->image) }}" alt="carousel-img" class="img-fluid" width="350px"></a>
                     </div>
                 </div>
             </div>

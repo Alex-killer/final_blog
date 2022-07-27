@@ -127,7 +127,7 @@
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                     <img src="{{ url('storage/'.$article->image) }}" alt="First slide">
                                     <figcaption class="post-title">
-                                        <a href="{{ route('blog.article.show', $article->id) }}">{!! Str::limit($article->description, 50) !!}</a>
+                                        <a href="{{ route('blog.article.show', $article->title) }}">{!! Str::limit($article->description, 50) !!}</a>
                                     </figcaption>
                                 </div>
                                 @endforeach

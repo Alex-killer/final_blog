@@ -27,7 +27,7 @@ Route::group(['prefix' => 'post', 'namespace' => 'Blog'], function () {
 });
 
    Route::get('/articles', 'Blog\ArticleController@index')->name('blog.article.index');
-   Route::get('/article/{article}', 'Blog\ArticleController@show')->name('blog.article.show');
+   Route::get('/article/{article:title}', 'Blog\ArticleController@show')->name('blog.article.show');
 
    Route::get('/category', 'Blog\CategoryController@index')->name('blog.category.index');
    Route::get('/category/{category}/posts', 'Blog\CategoryController@show')->name('blog.category.show');

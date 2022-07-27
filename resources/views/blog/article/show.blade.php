@@ -23,7 +23,7 @@
                         <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
                             <img src="{{ url('storage/'.$relatedArticle->image) }}" alt="related post" class="post-thumbnail">
                             <p class="post-category">{{ $relatedArticle->category->title }}</p>
-                            <h5 class="post-title"><a href="{{ $relatedArticle->id }}">{{ $relatedArticle->title }}</a></h5>
+                            <h5 class="post-title"><a href="{{ $relatedArticle->title }}">{{ $relatedArticle->title }}</a></h5>
                         </div>
                         @endforeach
                     </div>
