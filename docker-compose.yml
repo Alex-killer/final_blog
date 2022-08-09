@@ -45,7 +45,7 @@ services:
 
   mysql:
     image: mysql:8.0.21
-    restart: always
+#    restart: always
     environment:
       - MYSQL_DATABASE=${DB_DATABASE}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -59,8 +59,7 @@ services:
       - backend
 
   node:
-    build:
-      context: ./docker/node
+    image: node:latest
     volumes:
       - ./:/app
     user: "node"
@@ -72,6 +71,6 @@ services:
     ports:
       - "3000:3000"
       - "3001:3001"
-    command: "npm start"
+#    command: "npm start"
 
 

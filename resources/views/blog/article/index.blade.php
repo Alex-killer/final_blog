@@ -7,7 +7,7 @@
 @section('content')
 <main class="blog">
     <div class="container">
-        <h1 class="edica-page-title" data-aos="fade-up">{{ __('Blog') }}</h1>
+        <h1 class="edica-page-title" data-aos="fade-up">{{ __('Articles') }}</h1>
         <section class="featured-posts-section">
             <div class="row">
                 <div class="col-md-8 offset-md-2 mb-5" data-aos="fade-up">
@@ -35,7 +35,7 @@
                         <a href="{{ route('blog.category.show', $article->category->id) }}">
                             <p class="blog-post-category">{{ $article->category->title }}</p>
                         </a>
-                        <a href="{{ route('blog.post.show', $article->id) }}" class="blog-post-permalink">
+                        <a href="{{ route('blog.article.show', $article->title) }}" class="blog-post-permalink">
                             <h6 class="blog-post-title">{!! Str::limit($article->description, 80) !!}</h6>
                         </a>
                     </div>
@@ -64,7 +64,7 @@
                                 <img src="{{ url('storage/'.$article->image) }}" alt="blog post">
                             </div>
                             <p class="blog-post-category">{{ $article->category->title }}</p>
-                            <a href="{{ route('blog.post.show', $article->id) }}" class="blog-post-permalink">
+                            <a href="{{ route('blog.article.show', $article->title) }}" class="blog-post-permalink">
                                 <h6 class="blog-post-title">{!! Str::limit($article->description, 100) !!}</h6>
                             </a>
                         </div>
